@@ -32,7 +32,7 @@ pipeline {
 }
 
 
-   stage('Check code coverage') {
+stage('Check code coverage') {
             steps {
                 script {
                     def token = "squ_cdefd758e960e50fd24c6aab2ba592eca428aa4e"
@@ -60,7 +60,7 @@ pipeline {
         } 
 
 
-      stage('Docker Build and Push') {
+stage('Docker Build and Push') {
       steps {
           sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
           sh 'docker build -t veerendra1976/order-service:${VERSION} .'
