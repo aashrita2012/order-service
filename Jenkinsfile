@@ -80,7 +80,7 @@ stage('Docker Build and Push') {
 
     stage('Update Image Tag in GitOps') {
       steps {
-         checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[ credentialsId: 'git-ssh', url: 'git@github.com:udemy-dev-withK8s-AWS-codedecode/deployment-folder.git']])
+         checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[ credentialsId: 'git-ssh', url: 'git@github.com:aashrita2012/deployment-folder.git']])
         script {
        sh '''
           sed -i "s/image:.*/image: veerendra1976\\/order-service:${VERSION}/" aws/order-manifest.yml
