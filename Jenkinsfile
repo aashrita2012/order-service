@@ -85,7 +85,7 @@ stage('Docker Build and Push') {
        sh '''
           sed -i "s/image:.*/image: veerendra1976\\/order-service:${VERSION}/" aws/order-manifest.yml
         '''
-          sh 'git checkout master'
+          sh 'git checkout main'
           sh 'git add .'
           sh 'git commit -m "Update image tag"'
         sshagent(['git-ssh'])
@@ -99,5 +99,3 @@ stage('Docker Build and Push') {
   }
 
 }
-
-
