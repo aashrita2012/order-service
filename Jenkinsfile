@@ -31,7 +31,6 @@ pipeline {
   }
 }
 
-
 stage('Check code coverage') {
             steps {
                 script {
@@ -59,7 +58,6 @@ stage('Check code coverage') {
             }
         } 
 
-
 stage('Docker Build and Push') {
       steps {
           sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
@@ -69,16 +67,14 @@ stage('Docker Build and Push') {
     } 
 
 
-     stage('Cleanup Workspace') {
+stage('Cleanup Workspace') {
       steps {
         deleteDir()
        
       }
     }
 
-
-
-    stage('Update Image Tag in GitOps') {
+stage('Update Image Tag in GitOps') {
       steps {
          checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[ credentialsId: 'git-ssh', url: 'git@github.com:aashrita2012/deployment-folder.git']])
         script {
