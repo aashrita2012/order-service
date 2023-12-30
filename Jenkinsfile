@@ -4,6 +4,7 @@ pipeline {
   environment {
     DOCKERHUB_CREDENTIALS = credentials('DOCKER_HUB_CREDENTIAL')
     VERSION = "${env.BUILD_ID}"
+     JENKINS_SERVER = "54.83.130.8"
 
   }
 
@@ -27,7 +28,7 @@ pipeline {
 
     stage('SonarQube Analysis') {
   steps {
-    sh 'mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.host.url=http://54.83.130.8:9000/ -Dsonar.login=squ_cdefd758e960e50fd24c6aab2ba592eca428aa4e'
+    sh 'mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.host.url=http://${JENKINS_SERVER}:9000/ -Dsonar.login=squ_cdefd758e960e50fd24c6aab2ba592eca428aa4e'
   }
 }
 
@@ -35,7 +36,7 @@ stage('Check code coverage') {
             steps {
                 script {
                     def token = "squ_cdefd758e960e50fd24c6aab2ba592eca428aa4e"
-                    def sonarQubeUrl = "http://54.83.130.8:9000/api"
+                    def sonarQubeUrl = "http://${JENKINS_SERVER}:9000/api"
                     def componentKey = "com.codedecode:order"
                     def coverageThreshold = 0.0
 
