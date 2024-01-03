@@ -5,7 +5,6 @@ pipeline {
     DOCKERHUB_CREDENTIALS = credentials('DOCKER_HUB_CREDENTIAL')
     VERSION = "${env.BUILD_ID}"
      JENKINS_SERVER = "54.174.179.191"
-
   }
 
   tools {
